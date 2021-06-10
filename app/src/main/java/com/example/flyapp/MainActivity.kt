@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemR
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)){
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true
         }
         return true
