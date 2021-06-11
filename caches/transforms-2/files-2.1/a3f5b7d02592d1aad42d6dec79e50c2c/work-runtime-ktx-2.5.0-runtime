@@ -1,0 +1,14 @@
+androidx.work.CoroutineWorker
+androidx.work.CoroutineWorker$1
+androidx.work.CoroutineWorker$await$$inlined$suspendCancellableCoroutine$lambda$1
+androidx.work.CoroutineWorker$await$$inlined$suspendCancellableCoroutine$lambda$2
+androidx.work.CoroutineWorker$startWork$1
+androidx.work.DataKt
+androidx.work.DirectExecutor
+androidx.work.ListenableFutureKt
+androidx.work.ListenableFutureKt$await$$inlined$suspendCancellableCoroutine$lambda$1
+androidx.work.OneTimeWorkRequestKt
+androidx.work.OperationKt
+androidx.work.OperationKt$await$$inlined$suspendCancellableCoroutine$lambda$1
+androidx.work.OperationKt$await$1
+androidx.work.PeriodicWorkRequestKt
