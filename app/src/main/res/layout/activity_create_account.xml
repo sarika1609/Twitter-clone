@@ -33,6 +33,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
         android:gravity="center"
+        android:padding="4dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/button_background"
@@ -57,7 +58,7 @@
         android:text="Log in"
         android:id="@+id/tvLogin"
         android:layout_marginStart="5dp"
-        android:textColor="@color/teal_700"
+        android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@id/tvText1"
         app:layout_constraintStart_toEndOf="@id/tvText1"
         app:layout_constraintTop_toTopOf="@id/tvText1" />

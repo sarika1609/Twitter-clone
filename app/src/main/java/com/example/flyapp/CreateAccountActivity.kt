@@ -14,18 +14,18 @@ class CreateAccountActivity : AppCompatActivity() {
 
     lateinit var firebaseUser: FirebaseUser
 
-//    override fun onStart() {
-//        super.onStart()
-//
-//        firebaseUser = FirebaseAuth.getInstance().currentUser
-//
-//        if (firebaseUser != null){
-//
-//            val intent = Intent(this,MainActivity::class.java)
-//            startActivity(intent)
-//
-//        }
-//    }
+    override fun onStart() {
+        super.onStart()
+
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
+
+        if (firebaseUser != null){
+
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
