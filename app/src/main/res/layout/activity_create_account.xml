@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateAccountActivity">
+
+    <ImageView
+        android:id="@+id/ivTwitterImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="40dp"
+        android:src="@drawable/ic_twitter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="See what's \nhappening in the \nworld right now"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/ivTwitterImage"
+        app:layout_constraintTop_toBottomOf="@id/ivTwitterImage" />
+
+    <Button
+        android:id="@+id/btnCreateAccount"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:gravity="center"
+        android:padding="4dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_background"
+        android:text="Create account"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/tvText" />
+
+    <TextView
+        android:id="@+id/tvText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Have an account already?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/btnCreateAccount" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:id="@+id/tvLogin"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/tvText1"
+        app:layout_constraintStart_toEndOf="@id/tvText1"
+        app:layout_constraintTop_toTopOf="@id/tvText1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
