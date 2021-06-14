@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             var databaseReference =
                                 FirebaseDatabase.getInstance().reference.child("Users")
-                                    .child(firebaseAuth.currentUser.uid)
+                                    .child(firebaseAuth.currentUser!!.uid)
 
                             databaseReference.addValueEventListener(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {

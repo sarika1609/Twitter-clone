@@ -64,7 +64,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 if (it1.isSuccessful) {
                     val user = firebaseAuth.currentUser
-                    val uId = user.uid
+                    val uId = user!!.uid
 
                     databaseReference =
                         FirebaseDatabase.getInstance().reference.child("Users").child(uId)
