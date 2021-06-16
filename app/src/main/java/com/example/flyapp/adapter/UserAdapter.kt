@@ -19,9 +19,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
-class UserAdapter(private var list: List<User>,context: Context): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(private var userLst: List<User>,context: Context): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    private val context: Context = context
+    private val mContext: Context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.user_item, parent, false)
@@ -33,14 +33,16 @@ class UserAdapter(private var list: List<User>,context: Context): RecyclerView.A
 
         val firebaseUser = FirebaseAuth.getInstance().currentUser
 
-        val user:User = list[position]
+        val user:User = userLst[position]
         holder.follow.visibility = View.VISIBLE
 
-        holder.name.text = user.name
+        holder.userName.text = user.userName
+        holder.fullName.text = user.fullName
 
-        Glide.with(context)
+        Glide.with(mContext)
             .load(user.imageUrl)
-            .into(holder.image)
+            .placeholder(R.drawable.ic_profile_user)
+            .into(holder.profileImage)
 
         isFollowing(user.id, holder.follow)
 
@@ -50,12 +52,12 @@ class UserAdapter(private var list: List<User>,context: Context): RecyclerView.A
 
         holder.itemView.setOnClickListener(View.OnClickListener {
 
-            val editor: SharedPreferences.Editor = context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
+            val editor: SharedPreferences.Editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
             editor.putString("profileid", user.id)
             editor.apply()
 
             val fragment = ProfileFragment()
-            (context as FragmentActivity).supportFragmentManager.beginTransaction()
+            (mContext as FragmentActivity).supportFragmentManager.beginTransaction()
                 .replace(R.id.frame_layout, fragment)
                 .commit()
 
@@ -94,20 +96,19 @@ class UserAdapter(private var list: List<User>,context: Context): RecyclerView.A
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return userLst.size
     }
 
    class UserViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-       var name: TextView = view.findViewById<TextView>(R.id.tvUser)
-       var image: ImageView = view.findViewById<ImageView>(R.id.profileImage)
-       var follow: Button = view.findViewById<Button>(R.id.btnFollow)
+       val userName = view.findViewById<TextView>(R.id.user_item_user_name) as TextView
+       val fullName = view.findViewById<TextView>(R.id.user_item_full_name) as TextView
+       val profileImage = view.findViewById<ImageView>(R.id.user_item_profile_image) as ImageView
+       val follow = view.findViewById<Button>(R.id.user_item_button_follow) as Button
 
    }
 
     fun isFollowing(userId: String, button: Button){
-
-        var firebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
         val reference:DatabaseReference = FirebaseDatabase.getInstance().reference.child("Follow")
             .child(FirebaseAuth.getInstance().currentUser!!.uid).child("following")
@@ -125,7 +126,7 @@ class UserAdapter(private var list: List<User>,context: Context): RecyclerView.A
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "ERROR", Toast.LENGTH_SHORT).show()
             }
         })
 

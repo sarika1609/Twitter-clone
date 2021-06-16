@@ -24,11 +24,10 @@ class SearchFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var userAdapter: UserAdapter
-    var list  = mutableListOf<User>()
+    val userList = mutableListOf<User>()
     lateinit var searchBar: EditText
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
@@ -36,14 +35,14 @@ class SearchFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        userAdapter = UserAdapter(list,this.requireContext())
+        userAdapter = UserAdapter(userList,requireContext())
 
         recyclerView.adapter = userAdapter
 
         searchBar = view.findViewById(R.id.searchBar)
 
         readUsers()
-        searchBar.addTextChangedListener(object :TextWatcher{
+        searchBar.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -60,49 +59,52 @@ class SearchFragment : Fragment() {
         return view
     }
 
-    private fun searchUser(s:String){
+    private fun searchUser(s: String) {
 
-        val query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("name")
+        val query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("username")
             .startAt(s)
             .endAt("$s\uf8ff")
 
-        query.addValueEventListener(object : ValueEventListener{
+        query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                list.clear()
-               for (item in snapshot.children){
-                   val user : User? = item.getValue(User::class.java)
-                   list.add(user!!)
-               }
+                userList.clear()
+                for (item in snapshot.children) {
+                    val user: User? = item.getValue(User::class.java)
+                    userList.add(user!!)
+                }
                 userAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context,"ERROR",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
 
             }
         })
 
     }
-    private fun readUsers(){
+
+    private fun readUsers() {
+
         val reference = FirebaseDatabase.getInstance().getReference("Users")
-        reference.addValueEventListener(object :ValueEventListener{
+
+        reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                if (searchBar.text.toString()==""){
-                    list.clear()
+                if (searchBar.text.toString() == "") {
+                    userList.clear()
                 }
 
-                for (item in snapshot.children){
+                for (item in snapshot.children) {
                     val user = item.getValue(User::class.java)
-                    list.add(user!!)
+                    userList.add(user!!)
                 }
                 userAdapter.notifyDataSetChanged()
 
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context,"ERROR", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
 
             }
         })

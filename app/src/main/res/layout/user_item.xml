@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:padding="8dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/user_item_profile_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_profile_user" />
 
     <LinearLayout
@@ -15,29 +16,36 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="5dp"
-        android:layout_toEndOf="@id/profileImage"
+        android:layout_toEndOf="@id/user_item_profile_image"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvUser"
+            android:id="@+id/user_item_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:text="name"
+            android:text="user name"
             android:textColor="@color/black"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/user_item_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="full name" />
 
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnFollow"
+        android:id="@+id/user_item_button_follow"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="38dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:background="@color/blue"
-        android:textColor="@color/white"
-        android:visibility="gone" />
+        android:background="@drawable/button_background"
+        android:text="Following"
+        android:textAlignment="center" />
 
 </RelativeLayout>

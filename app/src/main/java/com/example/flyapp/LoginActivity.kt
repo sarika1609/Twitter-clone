@@ -29,10 +29,10 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        val email = findViewById<EditText>(R.id.etEmail)
-        val password = findViewById<EditText>(R.id.etPassword)
+        val email = findViewById<EditText>(R.id.etLoginEmail)
+        val password = findViewById<EditText>(R.id.etLoginPassword)
         val createAccount = findViewById<TextView>(R.id.tvCreateAccount)
-        val next = findViewById<Button>(R.id.btnNext)
+        val next = findViewById<Button>(R.id.btnLoginNext)
 
 
         createAccount.setOnClickListener(View.OnClickListener {
@@ -64,9 +64,8 @@ class LoginActivity : AppCompatActivity() {
                             databaseReference.addValueEventListener(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
 
-                                    val intent =
-                                        Intent(applicationContext, MainActivity::class.java)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                     startActivity(intent)
                                     finish()
 

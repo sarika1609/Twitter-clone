@@ -8,18 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-
-class MainActivity : AppCompatActivity() {
-
-    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(this,R.anim.rotate_open_anim) }
-    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this,R.anim.rotate_close_anim) }
-    private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(this,R.anim.from_bottom_anim) }
-    private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(this,R.anim.to_bottom_anim) }
-
-  private var clicked = false
-
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -30,6 +19,34 @@ import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemReselectedListener,
     NavigationView.OnNavigationItemSelectedListener {
+
+
+    private val rotateOpen: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.rotate_open_anim
+        )
+    }
+    private val rotateClose: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.rotate_close_anim
+        )
+    }
+    private val fromBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.from_bottom_anim
+        )
+    }
+    private val toBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.to_bottom_anim
+        )
+    }
+
+    private var clicked = false
 
     lateinit var bottomNavigationView: BottomNavigationView
     lateinit var navController: NavController
@@ -64,12 +81,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemR
     }
 
     private fun setAnimation(clicked: Boolean) {
-        if(!clicked){
+        if (!clicked) {
             fabThree.startAnimation(fromBottom)
             fabTwo.startAnimation(fromBottom)
             fabOne.startAnimation(fromBottom)
             fabMain.startAnimation(rotateOpen)
-        }else{
+        } else {
             fabThree.startAnimation(toBottom)
             fabTwo.startAnimation(toBottom)
             fabOne.startAnimation(toBottom)
@@ -78,11 +95,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemR
     }
 
     private fun setVisibility(clicked: Boolean) {
-        if (!clicked){
+        if (!clicked) {
             fabThree.visibility = View.VISIBLE
             fabTwo.visibility = View.VISIBLE
             fabOne.visibility = View.VISIBLE
-        }else{
+        } else {
             fabThree.visibility = View.INVISIBLE
             fabTwo.visibility = View.INVISIBLE
             fabOne.visibility = View.INVISIBLE
@@ -94,8 +111,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemR
 
         drawerLayout = findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.navigation_menu)
-        actionBarDrawerToggle =
-            ActionBarDrawerToggle(this, drawerLayout, R.string.start, R.string.close)
+        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.start, R.string.close)
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
