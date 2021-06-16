@@ -1,5 +1,6 @@
 package com.example.flyapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -66,6 +67,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemR
 
         }
         fabTwo.setOnClickListener {
+
+            val intent = Intent(this,PostActivity::class.java)
+            startActivity(intent)
+            finish()
 
         }
         fabThree.setOnClickListener {
